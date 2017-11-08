@@ -1,0 +1,63 @@
+代码是照着人家写的
+分析一下思路：
+一、脚本版：
+1.逻辑：
+找到source（源文件夹），target_dir（保存目的地文件夹）
+用年月日来创建文件目录，
+检测是否已经存在，否则创建
+.zip文件名称命名格式小时分钟秒
+
+跨平台解决
+2.问题思路
+路径变量
+时间文件夹=获取的目录+time.strftime(%Y%m%d)
+.zip文件=时间文件夹+\+time.strftime(%H%M%S)+'.zip'
+
+判断目的时间文件夹是否存在：
+if os.path.exist(时间文件夹变量)==0:即不存在
+  os.mkdir(时间文件夹变量)
+
+命令执行
+command = "zip -qr 目的文夹 源文件夹"
+if os.syste(command)==0:即执行完闭
+
+跨平台，unix、windows斜杠是反的，所以用os.sep代替
+二、gui版
+业务逻辑代码不变，
+用的知识以后再看看就好
+贴一下知识点：
+
+
+
+    先调用Tkinter的Tk()框架，新建root，放我们需要的控件，代码 root=Tkinter.Tk()
+
+    定义root的标题，代码 root.title("Backup")
+
+    设定root的大小，代码 root.geometry("200x200")
+
+    定义第一、二行的两个控件
+
+    Label，文本控件，显示“源地址”和“目的地址”
+    Entry，输入框控件，输入“源地址”和“目的地址”
+
+    顶底按钮，输入框内输入了地址信息，则点击按钮，执行函数内的语句
+
+    lbl_source = Tkinter.Label(root, text='源地址')
+
+    这条语句，表示定义Label，root指Label所在的一个母体框，text就是指显示的文本
+
+    lbl_source.grid(row=0, column=0)
+
+    这行代码，grid()函数的功能是显示控件，row指行，column指列
+
+    but_back["command"] = backup
+
+    这行代码非常重要！看到上面，定义函数的那块，函数名为backup，而这里，command指的是命令，这行代码的意思就是：将命令绑定这个函数(上面定义的)，当点击这个按钮时，就调用指定的backup()函数
+
+3、函数内部
+
+    函数内部的“global”：source 和 target_dir 都没有默认值，而他们的值，由entry_source和entry_target来赋值。不在本函数内的变量或对象，可以用标识符 global 来定义，然后在函数内部使用就可以了
+
+    关于get()函数：因为entry_source和entry_target都属于Tkinter模板中的Entry控件，该控件可以由get()函数读到该控件的文本框信息，所以只要调用get()就可以给source和target_dir赋值了
+
+
