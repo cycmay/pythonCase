@@ -1,0 +1,7 @@
+准备工作：
+安装模块 pyftpdlib
+
+创建代码文件 FtpServer.py
+
+实现简单的本地验证
+
