@@ -5,9 +5,13 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 import random
 
+code = ''
 # 随机字母:
 def rndChar():
-    return chr(random.randint(65, 90))
+    global code
+    result= chr(random.randint(65, 90))
+    code += result
+    return result
 
 # 随机颜色1:
 def rndColor():
@@ -22,7 +26,7 @@ width = 60 * 4
 height = 60
 image = Image.new('RGB', (width, height), (255, 255, 255))
 # 创建Font对象:
-font = ImageFont.truetype('/usr/share/fonts/truetype/ubuntu-font-family/UbuntuMono-R.ttf', 36)
+font = ImageFont.truetype('SF_Arch_Rival.ttf', 36)
 # 创建Draw对象:
 draw = ImageDraw.Draw(image)
 # 填充每个像素:
@@ -33,5 +37,6 @@ for x in range(width):
 for t in range(4):
     draw.text((60 * t + 10, 10), rndChar(), font=font, fill=rndColor2())
 # 模糊:
-image = image.filter(ImageFilter.BLUR)
+#image = image.filter(ImageFilter.BLUR)
 image.save('code.jpg', 'jpeg')
+print(code)
